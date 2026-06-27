@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -527,6 +526,7 @@
         <ul>
             <li><a href="#setup" class="nav-link active" onclick="switchTab(event, 'setup')"><i class="fa-solid fa-gear"></i> Setup & Tips</a></li>
             <li><a href="#tutorials" class="nav-link" onclick="switchTab(event, 'tutorials')"><i class="fa-solid fa-video"></i> Video Tutorials</a></li>
+            <li><a href="#" id="lesson-drive-btn" target="_blank"><i class="fa-solid fa-chalkboard-user"></i> Weekly Lessons</a></li>
             <li><a href="#faq" class="nav-link" onclick="switchTab(event, 'faq')"><i class="fa-solid fa-circle-question"></i> FAQs</a></li>
             <li><a href="#report" class="nav-link" onclick="switchTab(event, 'report')"><i class="fa-solid fa-bug"></i> Report Issue</a></li>
             <li><a href="#about" class="nav-link" onclick="switchTab(event, 'about')"><i class="fa-solid fa-circle-info"></i> About</a></li>
@@ -553,24 +553,12 @@
                         <li>Log in to your environment (Google Sheets, LMS, or School Management System).</li>
                         <li>Navigate to the Add-ons/Extensions section and confirm <strong>21st Century Teacher's Markbook</strong> is enabled.</li>
                         <li>Go to your Markbook Dashboard.</li>
-
-<li>for  <strong>Mobile</strong> or <strong>Desktop</strong> users, + tab on the sheet can be used to add a new sheet to record for a particular learner. </li>
-
-
-<li>The <strong>Subjects</strong> you entered in the sheet 1(A7:A15) will be updated to <strong>Other sheets.</strong> .This reduces stress of entering subjects to individual sheets.</li>
-
-
-
-<li>Click the optional (reset ) button to reset your sheet if you have messed up your sheet .</li>
-
-
+                        <li>for  <strong>Mobile</strong> or <strong>Desktop</strong> users, + tab on the sheet can be used to add a new sheet to record for a particular learner. </li>
+                        <li>The <strong>Subjects</strong> you entered in the sheet 1(A7:A15) will be updated to <strong>Other sheets.</strong> .This reduces stress of entering subjects to individual sheets.</li>
+                        <li>Click the optional (reset ) button to reset your sheet if you have messed up your sheet .</li>
                         <li>Click<strong>Run</strong> Score <strong>Button</strong> to view results summary on sheet2 sheet3 and sheet4 .</li>
                         <li>Click the <strong>"Next term"</strong> button to start a fresh for next term and your brought forward (B/F) for the learner will be updated. Please ensure that you export your data before clicking “Next term” .</li>
-
-<li>For <strong>Desktop</strong> users only, <strong>Click the menu bar at the right of your sheet</strong> to insert a new sheet and run your scores .</li>
-
-
-
+                        <li>For <strong>Desktop</strong> users only, <strong>Click the menu bar at the right of your sheet</strong> to insert a new sheet and run your scores .</li>
                     </ol>
                 </div>
             </div>
@@ -734,7 +722,7 @@
             <h2>Privacy Policy Framework</h2>
             <p class="last-updated">Last Updated: June 2026</p>
             <hr>
-            <p>The <strong>21st Century Teacher’s Markbook Google Sheets Add-on</strong> is designed specifically as a localized educational processing script engine. We strongly respect user and data isolation architectures.</p>
+            <p>The <strong>21st Century Teacher’s Markbook Google Sheets Add-on</strong> is designed specifically as a localized educational processing script engine. We strongly respect user and data data isolation architectures.</p>
             <h3>Data Collection Boundaries</h3>
             <p>Our processing modules do not harvest, parse, scrape, transmit, or cache student or user records to outside databases or external infrastructure layers. This includes but is not limited to: student identifiers, name datasets, graded matrices, or presence/attendance configurations.</p>
             <h3>Localized Storage Layers</h3>
@@ -757,14 +745,22 @@
     </div>
 
     <script>
+        // Core Tab System Controller
         function switchTab(event, tabId) {
             if (event) event.preventDefault();
             const navLinks = document.querySelectorAll('.nav-link');
             navLinks.forEach(link => link.classList.remove('active'));
             const tabContents = document.querySelectorAll('.tab-content');
             tabContents.forEach(content => content.classList.remove('active'));
-            document.getElementById(tabId).classList.add('active');
-            if (event) event.currentTarget.classList.add('active');
+            
+            const targetedTab = document.getElementById(tabId);
+            if (targetedTab) {
+                targetedTab.classList.add('active');
+            }
+            
+            if (event && event.currentTarget.classList.contains('nav-link')) {
+                event.currentTarget.classList.add('active');
+            }
             window.scrollTo({
                 top: document.getElementById('sticky-nav').offsetTop - 10,
                 behavior: 'smooth'
@@ -819,9 +815,28 @@
                 document.body.style.overflow = "auto";
             }
         }
+
+        // ASYNC RUNTIME: Dynamically fetches Drive Link from JSON config configuration file
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch('lesson-config.json')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Target configuration framework missing or inaccessible.");
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const driveButton = document.getElementById('lesson-drive-btn');
+                    if (driveButton && data.driveLink) {
+                        driveButton.href = data.driveLink;
+                    }
+                })
+                .catch(error => {
+                    console.error("Error updating dynamic navigation node runtime:", error);
+                });
+        });
     </script>
 </body>
 </html>
-
 
 
