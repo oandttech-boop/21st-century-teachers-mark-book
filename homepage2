@@ -1,0 +1,161 @@
+
+
+
+
+
+
+
+
+        header {
+            width: 100%;
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 18px;
+            text-decoration: none;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 500;
+            font-size: 15px;
+            transition: color 0.2s ease;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--secondary);
+        }
+
+        .main-wrapper {
+            max-width: 800px;
+            width: 100%;
+            margin: 40px 20px;
+            box-sizing: border-box;
+        }
+
+        .container {
+            background-color: var(--card-bg);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        h1 {
+            color: var(--primary);
+            font-size: 28px;
+            margin-top: 0;
+            margin-bottom: 5px;
+        }
+
+        .privacy-badge {
+            background-color: #eff6ff;
+            border-left: 4px solid var(--secondary);
+            padding: 15px;
+            margin: 20px 0 30px 0;
+            border-radius: 0 6px 6px 0;
+            font-size: 15px;
+            color: var(--text-muted);
+        }
+
+        h2 {
+            color: var(--secondary);
+            font-size: 20px;
+            margin-top: 30px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: var(--text-muted);
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .feature-list {
+            margin-top: 20px;
+            padding-left: 20px;
+        }
+
+        .feature-list li {
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            font-size: 16px;
+        }
+
+        .feature-list strong {
+            color: var(--primary);
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 20px;
+            text-align: center;
+            font-size: 14px;
+            color: #718096;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">21ST Century Teachers Markbook</a>
+            <nav>
+                <a href="#" class="active">Home</a>
+                <a href="privatepolicy.html">Privacy policy</a>
+                <a href="term.html">Term of service</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="main-wrapper">
+        <div class="container">
+            <h1>21ST Century Teachers Markbook</h1>
+            
+            <div class="privacy-badge">
+                <strong>Privacy Assured:</strong> This markbook is free, secure, and does not collect user information. All your data stays securely on your sheet or drive. The owner of this markbook has no access to your data, which remains fully protected under standard Google policies.
+            </div>
+
+            <p>Welcome to the 21ST Century Teachers Markbook, an advanced enterprise-grade assessment and evaluation suite engineered specifically to streamline academic administration, multi-tiered grading workflows, and comprehensive broadsheet generation.</p>
+            
+            <p>This environment provides rigorous psychometric and computational support for educators, transforming raw academic inputs into polished, publication-ready reporting structures. Utilize the integrated toolsets below to manage your assessment architecture efficiently:</p>
+
+            <h2>Core Capabilities</h2>
+            <ul class="feature-list">
+                <li><strong>Automated Score Processing & Aggregation:</strong> Seamlessly import raw student performance metrics, execute weighted statistical computations, and normalize continuous assessment vectors without manual intervention.</li>
+                <li><strong>Dynamic Broadsheet & Report Generation:</strong> Instantly compile institutional data matrices into standardized academic broadsheets designed to meet rigorous primary and secondary school reporting standards.</li>
+                <li><strong>Precision Psychometric Measurement:</strong> Leverage built-in evaluation models to monitor student cognitive progress and grade distribution curves across multiple terms.</li>
+            </ul>
+
+            <p style="margin-top: 30px;">Select your desired operational parameters from the control interface or navigation menu above to begin processing student records and generating automated academic metrics.</p>
+        </div>
+    </div>
+
+    <footer>
+      <div  class="foot">
+      <img src = "128.png" alt="logo" class="foot">
+        &copy; 21ST Century Teachers Markbook. Built for educational excellence and data security.
+      </div>
+    </footer>
+
+</body>
+</html>
