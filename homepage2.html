@@ -1,0 +1,684 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>21st Century Teachers Markbook | Support & Documentation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Core Layout Configuration Framework */
+        :root {
+            --primary-color: #1e3a8a;
+            --secondary-color: #3b82f6;
+            --accent-color: #10b981;
+            --dark-bg: #0f172a;
+            --light-bg: #f8fafc;
+            --text-main: #334155;
+            --text-muted: #64748b;
+            --white: #ffffff;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--light-bg);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--dark-bg) 0%, var(--primary-color) 100%);
+            color: var(--white);
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .header-container h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .header-container p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 25px auto;
+            opacity: 0.9;
+        }
+
+        .badge-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background-color: rgba(255, 255, 255, 0.15);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        #sticky-nav {
+            background-color: var(--white);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        #sticky-nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 10px;
+        }
+
+        #sticky-nav ul li a {
+            display: block;
+            padding: 18px 20px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        #sticky-nav ul li a:hover, #sticky-nav ul li a.active {
+            color: var(--secondary-color);
+            border-bottom-color: var(--secondary-color);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out;
+            padding: 30px 0;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: var(--dark-bg);
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            box-shadow: var(--box-shadow);
+            border: 1px solid #edf2f7;
+        }
+
+        .card h3 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            font-size: 1.25rem;
+        }
+
+        .card ul, .card ol {
+            padding-left: 20px;
+        }
+
+        .card li {
+            margin-bottom: 10px;
+        }
+
+        .step-card {
+            margin-bottom: 30px;
+        }
+
+        .steps-wrapper {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .step-item {
+            flex: 1;
+            min-width: 200px;
+            background: #f1f5f9;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            position: relative;
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        .step-item span {
+            position: absolute;
+            top: -15px;
+            right: 15px;
+            font-size: 3rem;
+            font-weight: 800;
+            color: rgba(0,0,0,0.05);
+            line-height: 1;
+        }
+
+        .info-card {
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 30px;
+        }
+
+        .video-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            text-align: center;
+            box-shadow: var(--box-shadow);
+            border: 1px solid #e2e8f0;
+            transition: transform 0.2s ease;
+        }
+
+        .video-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .video-icon {
+            font-size: 3.5rem;
+            color: #ef4444;
+            margin-bottom: 15px;
+        }
+
+        .video-card h3 {
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .video-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: var(--white);
+            padding: 10px 24px;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.2s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-color);
+        }
+
+        .accordion {
+            margin-top: 20px;
+        }
+
+        .accordion-item {
+            background: var(--white);
+            margin-bottom: 15px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            padding: 20px;
+            background: var(--white);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .accordion-header h4 {
+            font-size: 1.1rem;
+            color: var(--dark-bg);
+        }
+
+        .accordion-header i {
+            transition: transform 0.3s ease;
+            color: var(--text-muted);
+        }
+
+        .accordion-body {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0, 1, 0, 1);
+            background-color: #fafafa;
+        }
+
+        .accordion-body p {
+            padding: 20px 0;
+            color: var(--text-main);
+        }
+
+        .accordion-item.open .accordion-header i {
+            transform: rotate(180deg);
+            color: var(--secondary-color);
+        }
+
+        .accordion-item.open .accordion-body {
+            max-height: 1000px;
+            transition: all 0.3s cubic-bezier(1, 0, 1, 0);
+        }
+
+        form {
+            background: var(--white);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            border: 1px solid #e2e8f0;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        input[type="text"], select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: var(--border-radius);
+            font-family: inherit;
+            font-size: 0.95rem;
+            color: inherit;
+            background-color: #f8fafc;
+        }
+
+        input[type="text"]:focus, select:focus, textarea:focus {
+            outline: 2px solid var(--secondary-color);
+            background-color: var(--white);
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            font-size: 1rem;
+            background-color: var(--dark-bg);
+        }
+
+        .btn-submit:hover {
+            background-color: var(--primary-color);
+        }
+
+        .about-card {
+            display: flex;
+            background: var(--white);
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            gap: 40px;
+            align-items: center;
+            border: 1px solid #e2e8f0;
+        }
+
+        .about-img-container {
+            flex: 0 0 240px;
+            height: 480px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            border: 4px solid var(--white);
+        }
+
+        .about-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            color: var(--dark-bg);
+        }
+
+        .title-sub {
+            color: var(--secondary-color);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .contact-box {
+            margin-top: 25px;
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .contact-box h4 {
+            margin-bottom: 10px;
+            color: var(--dark-bg);
+        }
+
+        .contact-box a {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+
+        footer {
+            background-color: var(--dark-bg);
+            color: #94a3b8;
+            padding: 40px 20px;
+            margin-top: 60px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a {
+            color: #f1f5f9;
+            text-decoration: none;
+            margin: 0 10px;
+            cursor: pointer;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-content {
+            background-color: var(--white);
+            margin: 10% auto;
+            padding: 40px;
+            border-radius: var(--border-radius);
+            max-width: 650px;
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+            position: relative;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .close {
+            position: absolute;
+            right: 25px;
+            top: 20px;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--text-muted);
+        }
+
+        .close:hover {
+            color: red;
+        }
+
+        .last-updated {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #e2e8f0;
+            margin-bottom: 20px;
+        }
+
+        .modal-content h3 {
+            margin: 20px 0 10px 0;
+            color: var(--primary-color);
+        }
+
+        @media (max-width: 768px) {
+            .form-grid { grid-template-columns: 1fr; gap: 0; }
+            #sticky-nav ul { flex-wrap: wrap; }
+            #sticky-nav ul li a { padding: 12px 10px; font-size: 0.85rem; }
+            .about-card { flex-direction: column; text-align: center; }
+            .about-img-container { flex: 0 0 320px; width: 200px; height: 400px; }
+            .steps-wrapper { flex-direction: column; }
+            header { padding: 40px 15px; }
+            .header-container h1 { font-size: 1.8rem; }
+        }
+
+
+
+
+
+
+
+        header {
+            width: 100%;
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 18px;
+            text-decoration: none;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 500;
+            font-size: 15px;
+            transition: color 0.2s ease;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--secondary);
+        }
+
+        .main-wrapper {
+            max-width: 800px;
+            width: 100%;
+            margin: 40px 20px;
+            box-sizing: border-box;
+        }
+
+        .container {
+            background-color: var(--card-bg);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        h1 {
+            color: var(--primary);
+            font-size: 28px;
+            margin-top: 0;
+            margin-bottom: 5px;
+        }
+
+        .privacy-badge {
+            background-color: #eff6ff;
+            border-left: 4px solid var(--secondary);
+            padding: 15px;
+            margin: 20px 0 30px 0;
+            border-radius: 0 6px 6px 0;
+            font-size: 15px;
+            color: var(--text-muted);
+        }
+
+        h2 {
+            color: var(--secondary);
+            font-size: 20px;
+            margin-top: 30px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: var(--text-muted);
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .feature-list {
+            margin-top: 20px;
+            padding-left: 20px;
+        }
+
+        .feature-list li {
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            font-size: 16px;
+        }
+
+        .feature-list strong {
+            color: var(--primary);
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 20px;
+            text-align: center;
+            font-size: 14px;
+            color: #718096;
+        }
+    </style>
+</head>
+
+
+    <header>
+
+
+       <div class="header-container">
+            
+            <h1><i class="fa-solid fa-book-open-reader"></i> 21st Century Teacher's Markbook</h1>
+            <p>Google Sheets Add-on for collecting, organising, and analysing learners' scores safely and efficiently.</p>
+            <div class="badge-container">
+                <span class="badge"><i class="fa-solid fa-shield-halved"></i> 100% Safe & Secure</span>
+                <span class="badge"><i class="fa-solid fa-user-shield"></i> No Personal Data Collected</span>
+                <span class="badge"><i class="fa-solid fa-hand-holding-dollar"></i> Completely Free</span>
+            </div>
+        </div>
+
+        <div class="nav-container">
+            <a href="#" class="logo">21ST Century Teachers Markbook</a>
+            <nav>
+                <a href="#" class="active">Home</a>
+                <a href="privatepolicy.html">Privacy policy</a>
+                <a href="term.html">Term of service</a>
+            </nav>
+        </div>
+    </header>
+<body>
+    <div class="main-wrapper">
+        <div class="container">
+            <h1>21ST Century Teachers Markbook</h1>
+            
+            <div class="privacy-badge">
+                <strong>Privacy Assured:</strong> This markbook is free, secure, and does not collect user information. All your data stays securely on your sheet or drive. The owner of this markbook has no access to your data, which remains fully protected under standard Google policies.
+            </div>
+
+            <p>Welcome to the 21ST Century Teachers Markbook, an advanced enterprise-grade assessment and evaluation suite engineered specifically to streamline academic administration, multi-tiered grading workflows, and comprehensive broadsheet generation.</p>
+            
+            <p>This environment provides rigorous psychometric and computational support for educators, transforming raw academic inputs into polished, publication-ready reporting structures. Utilize the integrated toolsets below to manage your assessment architecture efficiently:</p>
+
+            <h2>Core Capabilities</h2>
+            <ul class="feature-list">
+                <li><strong>Automated Score Processing & Aggregation:</strong> Seamlessly import raw student performance metrics, execute weighted statistical computations, and normalize continuous assessment vectors without manual intervention.</li>
+                <li><strong>Dynamic Broadsheet & Report Generation:</strong> Instantly compile institutional data matrices into standardized academic broadsheets designed to meet rigorous primary and secondary school reporting standards.</li>
+                <li><strong>Precision Psychometric Measurement:</strong> Leverage built-in evaluation models to monitor student cognitive progress and grade distribution curves across multiple terms.</li>
+            </ul>
+
+            <p style="margin-top: 30px;">Select your desired operational parameters from the control interface or navigation menu above to begin processing student records and generating automated academic metrics.</p>
+        </div>
+    </div>
+
+    <footer>
+      <div  class="foot">
+      <img src = "128.png" alt="logo" class="foot">
+        &copy; 21ST Century Teachers Markbook. Built for educational excellence and data security.
+      </div>
+    </footer>
+</main>
+</body>
+</html>
+</html>
